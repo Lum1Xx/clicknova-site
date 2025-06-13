@@ -938,8 +938,8 @@
                 </div>
                 
                 <div class="contact-form animate">
-                    <form id="formContacto" action="https://script.google.com/macros/s/AKfycbxRlN--h7t4Sk_s3GcAVUpG1BZgaPRrf_CrBDiPxLqn0daJC4DKws_cxDWRgaUrtYkFXQ/exec" method="POST">
-                        <div id="form-message" style="display: none; padding: 15px; margin-bottom: 20px; border-radius: 5px;"></div>
+                    <form id="formContacto">
+                        <div id="form-message" class="form-message" style="display: none;"></div>
                         
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
@@ -1065,7 +1065,7 @@
             });
         });
         
-        // Form submission for Google Apps Script - Versión optimizada y funcional
+        // Form submission for Google Apps Script
         const contactForm = document.getElementById('formContacto');
         const formMessage = document.getElementById('form-message');
         
@@ -1079,38 +1079,23 @@
                 formMessage.style.backgroundColor = '#f8f9fa';
                 formMessage.style.color = '#212529';
                 
+                // URL del Google Apps Script
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbxRlN--h7t4Sk_s3GcAVUpG1BZgaPRrf_CrBDiPxLqn0daJC4DKws_cxDWRgaUrtYkFXQ/exec';
+                
                 // Crear objeto FormData
                 const formData = new FormData(contactForm);
                 
-                // Convertir FormData a objeto simple
-                const formObject = {};
-                formData.forEach((value, key) => {
-                    formObject[key] = value;
-                });
-                
-                // Enviar datos al Google Apps Script
-                fetch(contactForm.action, {
+                // Enviar datos via POST
+                fetch(scriptURL, {
                     method: 'POST',
-                    body: JSON.stringify(formObject),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                    body: formData,
+                    mode: 'no-cors' // Importante para evitar problemas con CORS
                 })
-                .then(response => {
-                    if (response.ok) {
-                        return response.text(); // Google Apps Script suele devolver texto
-                    }
-                    throw new Error('Error en la respuesta del servidor');
-                })
-                .then(text => {
-                    // Manejar respuesta exitosa
+                .then(() => {
                     formMessage.textContent = '¡Gracias por tu mensaje! Nos pondremos en contacto pronto.';
                     formMessage.style.backgroundColor = '#d4edda';
                     formMessage.style.color = '#155724';
                     contactForm.reset();
-                    
-                    // Opcional: Redirigir después de éxito (si el script lo requiere)
-                    // window.location.href = 'gracias.html';
                 })
                 .catch(error => {
                     console.error('Error:', error);
