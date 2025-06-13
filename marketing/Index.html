@@ -1020,7 +1020,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS ACTUALIZADOS PARA GOOGLE SHEETS -->
+    <!-- SCRIPTS -->
     <script>
         // Header scroll effect
         window.addEventListener('scroll', function() {
@@ -1084,10 +1084,8 @@
         
         // Check on scroll
         window.addEventListener('scroll', checkScroll);
-    </script>
 
-    <!-- Script del formulario actualizado -->
-    <script>
+        // Form submission handler - Versión mejorada
         const contactForm = document.getElementById('formContacto');
         const formMessage = document.getElementById('form-message');
 
@@ -1095,32 +1093,60 @@
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
-                formMessage.textContent = 'Enviando...';
-                formMessage.style.display = 'block';
+                // Validación básica de campos requeridos
+                const nombre = contactForm.nombre.value.trim();
+                const email = contactForm.email.value.trim();
+                const mensaje = contactForm.mensaje.value.trim();
+                
+                if (!nombre || !email || !mensaje) {
+                    formMessage.textContent = '❌ Por favor completa todos los campos requeridos';
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                    setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+                    return;
+                }
+
+                // Validación básica de email
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    formMessage.textContent = '❌ Por favor ingresa un email válido';
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                    setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+                    return;
+                }
+
+                // Mostrar estado de carga
+                formMessage.textContent = '⏳ Enviando tu mensaje...';
                 formMessage.className = 'form-message';
+                formMessage.style.display = 'block';
 
                 try {
                     const scriptURL = 'https://script.google.com/macros/s/AKfycbxRlN--h7t4Sk_s3GcAVUpG1BZgaPRrf_CrBDiPxLqn0daJC4DKws_cxDWRgaUrtYkFXQ/exec';
                     
                     const formData = new FormData(contactForm);
+                    // Agregar timestamp para evitar caché
+                    formData.append('timestamp', new Date().getTime());
+                    
                     const response = await fetch(scriptURL, {
                         method: 'POST',
                         body: formData,
-                        mode: 'no-cors' // Necesario para Vercel
+                        mode: 'no-cors'
                     });
 
                     // Aunque no podamos leer la respuesta (por no-cors), asumimos éxito
-                    formMessage.textContent = '✅ ¡Mensaje enviado!';
+                    formMessage.textContent = '✅ ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.';
                     formMessage.className = 'form-message success';
                     contactForm.reset();
+                    
                 } catch (error) {
-                    console.error('Error:', error);
-                    formMessage.textContent = '❌ Error al enviar. Intenta nuevamente.';
+                    console.error('Error en el envío:', error);
+                    formMessage.textContent = '❌ Error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctanos por teléfono/WhatsApp.';
                     formMessage.className = 'form-message error';
+                    
                 } finally {
                     setTimeout(() => {
                         formMessage.style.display = 'none';
-                    }, 5000);
+                    }, 8000); // Más tiempo para leer el mensaje de éxito/error
                 }
             });
         }
