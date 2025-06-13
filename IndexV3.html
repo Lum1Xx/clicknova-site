@@ -1065,7 +1065,7 @@
             });
         });
         
-        // Form submission with Formspree - Versión corregida y optimizada
+        // Form submission for Google Apps Script
         const contactForm = document.getElementById('formContacto');
         const formMessage = document.getElementById('form-message');
         
@@ -1088,13 +1088,15 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        formMessage.textContent = '¡Gracias por tu mensaje! Nos pondremos en contacto pronto.';
-                        formMessage.style.backgroundColor = '#d4edda';
-                        formMessage.style.color = '#155724';
-                        contactForm.reset();
-                    } else {
-                        throw new Error('Error en el envío');
+                        return response.json();
                     }
+                    throw new Error('Error en el envío');
+                })
+                .then(data => {
+                    formMessage.textContent = '¡Gracias por tu mensaje! Nos pondremos en contacto pronto.';
+                    formMessage.style.backgroundColor = '#d4edda';
+                    formMessage.style.color = '#155724';
+                    contactForm.reset();
                 })
                 .catch(error => {
                     formMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.';
