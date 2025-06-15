@@ -459,62 +459,23 @@
             opacity: 0.9;
         }
         
-        .contact-form {
-            background-color: var(--white);
-            padding: 40px;
+        /* Estilos para el formulario de Google Forms */
+        .google-form-container {
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+            border: none;
+            overflow: hidden;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            background-color: var(--white);
         }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .form-control {
+        .google-form-container iframe {
             width: 100%;
-            padding: 12px 15px;
-            background-color: var(--light-bg);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            color: var(--text-dark);
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Mensaje de éxito/error */
-        .form-message {
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            display: none;
-        }
-        
-        .form-message.success {
-            background-color: #d4edda;
-            color: #155724;
-            display: block;
-        }
-        
-        .form-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            display: block;
+            height: 100%;
+            min-height: 600px;
+            border: none;
         }
         
         /* FOOTER */
@@ -623,6 +584,10 @@
             .about-img {
                 order: -1;
             }
+            
+            .google-form-container {
+                min-height: 500px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -667,6 +632,10 @@
             .hero-content {
                 margin: 0 auto;
             }
+            
+            .google-form-container {
+                min-height: 700px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -675,8 +644,8 @@
                 width: 100%;
             }
             
-            .contact-form {
-                padding: 30px 20px;
+            .google-form-container {
+                min-height: 800px;
             }
         }
     </style>
@@ -937,32 +906,8 @@
                     </div>
                 </div>
                 
-                <div class="contact-form animate">
-                    <form id="formContacto">
-                        <div id="form-message" class="form-message" style="display: none;"></div>
-                        
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="empresa">Empresa</label>
-                            <input type="text" id="empresa" name="empresa" class="form-control">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" class="form-control" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Solicitar propuesta</button>
-                    </form>
+                <div class="google-form-container animate">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf0_S8sC1UBya826kdL4wtDFPK7HqefuyTXlcTjZ9lrnmCa3w/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
                 </div>
             </div>
         </div>
@@ -1084,79 +1029,6 @@
         
         // Check on scroll
         window.addEventListener('scroll', checkScroll);
-
-        // Form submission handler - Versión corregida para Vercel
-        const contactForm = document.getElementById('formContacto');
-        const formMessage = document.getElementById('form-message');
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // Validación básica de campos requeridos
-                const nombre = contactForm.nombre.value.trim();
-                const email = contactForm.email.value.trim();
-                const mensaje = contactForm.mensaje.value.trim();
-                
-                if (!nombre || !email || !mensaje) {
-                    formMessage.textContent = '❌ Por favor completa todos los campos requeridos';
-                    formMessage.className = 'form-message error';
-                    formMessage.style.display = 'block';
-                    setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
-                    return;
-                }
-
-                // Validación básica de email
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    formMessage.textContent = '❌ Por favor ingresa un email válido';
-                    formMessage.className = 'form-message error';
-                    formMessage.style.display = 'block';
-                    setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
-                    return;
-                }
-
-                // Mostrar estado de carga
-                formMessage.textContent = '⏳ Enviando tu mensaje...';
-                formMessage.className = 'form-message';
-                formMessage.style.display = 'block';
-
-                try {
-                    // Enviar a nuestro endpoint de API en Vercel
-                    const response = await fetch('/api/submit-form', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            nombre: nombre,
-                            email: email,
-                            empresa: contactForm.empresa.value.trim(),
-                            mensaje: mensaje
-                        })
-                    });
-
-                    const data = await response.json();
-
-                    if (!response.ok) {
-                        throw new Error(data.error || 'Error al enviar el formulario');
-                    }
-
-                    formMessage.textContent = '✅ ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.';
-                    formMessage.className = 'form-message success';
-                    contactForm.reset();
-                    
-                } catch (error) {
-                    console.error('Error en el envío:', error);
-                    formMessage.textContent = `❌ ${error.message || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctanos por teléfono/WhatsApp.'}`;
-                    formMessage.className = 'form-message error';
-                    
-                } finally {
-                    setTimeout(() => {
-                        formMessage.style.display = 'none';
-                    }, 8000);
-                }
-            });
-        }
     </script>
 </body>
 </html>
