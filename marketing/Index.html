@@ -459,22 +459,29 @@
             opacity: 0.9;
         }
         
-        /* Estilos para el formulario de Google Forms */
-        .google-form-container {
-            width: 100%;
-            height: 100%;
-            min-height: 600px;
-            border: none;
-            overflow: hidden;
+        /* FORMULARIO DE GOOGLE */
+        .google-form-wrapper {
+            background-color: var(--white);
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            background-color: var(--white);
+            padding: 30px;
+            height: 100%;
+        }
+        
+        .google-form-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 1400px; /* Ajusta según el tamaño de tu formulario */
+            height: 0;
+            overflow: hidden;
         }
         
         .google-form-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            min-height: 600px;
             border: none;
         }
         
@@ -586,7 +593,7 @@
             }
             
             .google-form-container {
-                min-height: 500px;
+                padding-bottom: 1500px;
             }
         }
         
@@ -634,7 +641,7 @@
             }
             
             .google-form-container {
-                min-height: 700px;
+                padding-bottom: 1600px;
             }
         }
         
@@ -645,7 +652,7 @@
             }
             
             .google-form-container {
-                min-height: 800px;
+                padding-bottom: 1800px;
             }
         }
     </style>
@@ -871,7 +878,7 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <h2 class="animate">Hablemos de tu proyecto</h2>
-                    <p class="animate">Estamos listos para ayudarte a llevar tu negocio al siguiente nivel. Completa el formulario o contáctanos directamente.</p>
+                    <p class="animate">Estamos listos para ayudarte a llevar tu negocio al siguiente nivel. Completa nuestro formulario o contáctanos directamente.</p>
                     
                     <div class="contact-methods">
                         <div class="contact-method animate">
@@ -906,8 +913,10 @@
                     </div>
                 </div>
                 
-                <div class="google-form-container animate">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf0_S8sC1UBya826kdL4wtDFPK7HqefuyTXlcTjZ9lrnmCa3w/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+                <div class="google-form-wrapper animate">
+                    <div class="google-form-container">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf0_S8sC1UBya826kdL4wtDFPK7HqefuyTXlcTjZ9lrnmCa3w/viewform?embedded=true&hl=es" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+                    </div>
                 </div>
             </div>
         </div>
