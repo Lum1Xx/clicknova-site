@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 2. URL de tu Google Apps Script (reemplázala con la tuya)
+    // 2. URL de tu Google Apps Script
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxRlN--h7t4Sk_s3GcAVUpG1BZgaPRrf_CrBDiPxLqn0daJC4DKws_cxDWRgaUrtYkFXQ/exec';
 
     // 3. Preparar datos para enviar a Google Sheets

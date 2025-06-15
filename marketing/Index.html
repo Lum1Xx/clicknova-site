@@ -1085,7 +1085,7 @@
         // Check on scroll
         window.addEventListener('scroll', checkScroll);
 
-        // Form submission handler - Versión mejorada
+        // Form submission handler - Versión corregida para Vercel
         const contactForm = document.getElementById('formContacto');
         const formMessage = document.getElementById('form-message');
 
@@ -1121,32 +1121,39 @@
                 formMessage.style.display = 'block';
 
                 try {
-                    const scriptURL = 'https://script.google.com/macros/s/AKfycbxRlN--h7t4Sk_s3GcAVUpG1BZgaPRrf_CrBDiPxLqn0daJC4DKws_cxDWRgaUrtYkFXQ/exec';
-                    
-                    const formData = new FormData(contactForm);
-                    // Agregar timestamp para evitar caché
-                    formData.append('timestamp', new Date().getTime());
-                    
-                    const response = await fetch(scriptURL, {
+                    // Enviar a nuestro endpoint de API en Vercel
+                    const response = await fetch('/api/submit-form', {
                         method: 'POST',
-                        body: formData,
-                        mode: 'no-cors'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            nombre: nombre,
+                            email: email,
+                            empresa: contactForm.empresa.value.trim(),
+                            mensaje: mensaje
+                        })
                     });
 
-                    // Aunque no podamos leer la respuesta (por no-cors), asumimos éxito
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Error al enviar el formulario');
+                    }
+
                     formMessage.textContent = '✅ ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.';
                     formMessage.className = 'form-message success';
                     contactForm.reset();
                     
                 } catch (error) {
                     console.error('Error en el envío:', error);
-                    formMessage.textContent = '❌ Error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctanos por teléfono/WhatsApp.';
+                    formMessage.textContent = `❌ ${error.message || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctanos por teléfono/WhatsApp.'}`;
                     formMessage.className = 'form-message error';
                     
                 } finally {
                     setTimeout(() => {
                         formMessage.style.display = 'none';
-                    }, 8000); // Más tiempo para leer el mensaje de éxito/error
+                    }, 8000);
                 }
             });
         }
