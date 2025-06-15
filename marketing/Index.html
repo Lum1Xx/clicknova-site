@@ -20,11 +20,11 @@
     <style>
         /* RESET & VARIABLES */
         :root {
-            --primary: #E049C0;       /* Rosa intenso */
-            --secondary: #FF6D3B;     /* Naranja brillante */
-            --accent: #FDA352;        /* Dorado/naranja claro */
-            --light-bg: #F3F0EB;      /* Fondo claro beige */
-            --dark: #111B52;          /* Azul oscuro */
+            --primary: #E049C0;
+            --secondary: #FF6D3B;
+            --accent: #FDA352;
+            --light-bg: #F3F0EB;
+            --dark: #111B52;
             --white: #ffffff;
             --black: #000000;
             --text-dark: #333333;
@@ -44,7 +44,6 @@
             overflow-x: hidden;
         }
         
-        /* TIPOGRAFÍA */
         h1, h2, h3, h4 {
             font-weight: 700;
             line-height: 1.2;
@@ -59,7 +58,6 @@
             h2 { font-size: 2rem; }
         }
         
-        /* LAYOUT */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -71,7 +69,6 @@
             padding: 100px 0;
         }
         
-        /* BOTONES */
         .btn {
             display: inline-block;
             padding: 12px 30px;
@@ -93,19 +90,6 @@
             box-shadow: 0 10px 20px rgba(224, 73, 192, 0.3);
         }
         
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
-            border-color: transparent;
-        }
-        
-        /* HEADER */
         header {
             position: fixed;
             top: 0;
@@ -162,21 +146,6 @@
             color: var(--primary);
         }
         
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            transition: width 0.3s ease;
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -186,7 +155,6 @@
             cursor: pointer;
         }
         
-        /* HERO SECTION */
         .hero {
             height: 100vh;
             display: flex;
@@ -199,38 +167,6 @@
         
         .hero-content {
             max-width: 600px;
-        }
-        
-        .hero h1 {
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-        }
-        
-        .hero .slogan {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-        
-        .hero p {
-            margin-bottom: 30px;
-            font-size: 1.2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-        
-        .hero .btn {
-            animation: fadeInUp 1s ease 0.6s forwards;
-            opacity: 0;
-        }
-        
-        /* SERVICIOS */
-        .services {
-            background-color: var(--white);
         }
         
         .section-title {
@@ -286,26 +222,6 @@
             margin-bottom: 20px;
         }
         
-        .service-card h3 {
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .service-card p {
-            margin-bottom: 20px;
-            color: var(--text-dark);
-            opacity: 0.8;
-        }
-        
-        /* CASOS DE ÉXITO */
-        .portfolio {
-            background-color: var(--light-bg);
-        }
-        
-        .section-title h2.dark {
-            color: var(--dark);
-        }
-        
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -350,22 +266,6 @@
             transform: scale(1.1);
         }
         
-        .portfolio-overlay h3 {
-            margin-bottom: 10px;
-            color: var(--white);
-        }
-        
-        .portfolio-overlay p {
-            margin-bottom: 15px;
-            opacity: 0.9;
-            color: var(--white);
-        }
-        
-        /* NOSOTROS */
-        .about {
-            background-color: var(--white);
-        }
-        
         .about-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -385,43 +285,10 @@
             display: block;
         }
         
-        .about-content h2 {
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        .about-content p {
-            margin-bottom: 20px;
-            color: var(--text-dark);
-            opacity: 0.9;
-        }
-        
-        /* CONTACTO */
-        .contact {
-            background-color: var(--light-bg);
-        }
-        
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .contact-info h2 {
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        .contact-info p {
-            margin-bottom: 30px;
-            color: var(--text-dark);
-            opacity: 0.9;
         }
         
         .contact-methods {
@@ -448,34 +315,17 @@
             font-size: 1.2rem;
         }
         
-        .contact-method h4 {
-            color: var(--dark);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        
-        .contact-method p {
-            color: var(--text-dark);
-            opacity: 0.9;
-        }
-        
-        /* FORMULARIO DE GOOGLE */
-        .google-form-wrapper {
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            padding: 30px;
-            height: 100%;
-        }
-        
+        /* FORMULARIO DE GOOGLE - SOLUCIÓN DEFINITIVA */
         .google-form-container {
-            position: relative;
             width: 100%;
-            padding-bottom: 1400px; /* Ajusta según el tamaño de tu formulario */
-            height: 0;
+            height: 1200px;
             overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: var(--white);
         }
-        
+
         .google-form-container iframe {
             position: absolute;
             top: 0;
@@ -484,105 +334,12 @@
             height: 100%;
             border: none;
         }
-        
-        /* FOOTER */
-        footer {
-            background-color: var(--dark);
-            padding: 70px 0 30px;
-            color: var(--white);
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-col h3 {
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            color: var(--white);
-        }
-        
-        .footer-col p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-col ul li a:hover {
-            color: var(--primary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-        
-        /* ANIMACIONES */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-        
-        .animate.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* RESPONSIVE */
+
         @media (max-width: 992px) {
+            .google-form-container {
+                height: 1300px;
+            }
+            
             .about-container,
             .contact-container {
                 grid-template-columns: 1fr;
@@ -591,12 +348,8 @@
             .about-img {
                 order: -1;
             }
-            
-            .google-form-container {
-                padding-bottom: 1500px;
-            }
         }
-        
+
         @media (max-width: 768px) {
             section {
                 padding: 70px 0;
@@ -641,10 +394,10 @@
             }
             
             .google-form-container {
-                padding-bottom: 1600px;
+                height: 1400px;
             }
         }
-        
+
         @media (max-width: 576px) {
             .service-card,
             .portfolio-item {
@@ -652,8 +405,48 @@
             }
             
             .google-form-container {
-                padding-bottom: 1800px;
+                height: 1600px;
             }
+        }
+
+        .animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
         }
     </style>
 </head>
@@ -753,61 +546,6 @@
                     <p>Planes 360° que combinan todos los canales para maximizar tus resultados.</p>
                     <a href="#" class="btn btn-outline">Ver más</a>
                 </div>
-
-                <!-- Nuevos servicios agregados -->
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Creación de Página Web</h3>
-                    <p>Diseño y desarrollo de sitios web profesionales, rápidos y optimizados para conversiones.</p>
-                    <a href="#" class="btn btn-outline">Ver más</a>
-                </div>
-                
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fas fa-share-alt"></i>
-                    </div>
-                    <h3>Creación de Redes Sociales</h3>
-                    <p>Configuración profesional de tus perfiles sociales con identidad de marca coherente.</p>
-                    <a href="#" class="btn btn-outline">Ver más</a>
-                </div>
-                
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Gestión de Redes Sociales</h3>
-                    <p>Administración diaria de tus redes con contenido estratégico y engagement con tu audiencia.</p>
-                    <a href="#" class="btn btn-outline">Ver más</a>
-                </div>
-                
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Automatización de Embudos de Venta</h3>
-                    <p>Sistemas automatizados que guían a tus clientes por el proceso de compra sin esfuerzo.</p>
-                    <a href="#" class="btn btn-outline">Ver más</a>
-                </div>
-                
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Branding con Inteligencia Artificial</h3>
-                    <p>Desarrollo de identidad de marca potenciado con herramientas de IA para diferenciarte.</p>
-                    <a href="#" class="btn btn-outline">Ver más</a>
-                </div>
-                
-                <div class="service-card animate">
-                    <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>Diseño de Tiendas Online</h3>
-                    <p>E-commerce optimizado para maximizar conversiones y ofrecer la mejor experiencia de compra.</p>
-                    <a href="#" class="btn btn-outline">Ver más</a>
-                </div>
             </div>
         </div>
     </section>
@@ -868,7 +606,7 @@
         </div>
     </section>
 
-    <!-- CONTACTO -->
+    <!-- CONTACTO - VERSIÓN DEFINITIVA CON GOOGLE FORMS -->
     <section class="contact" id="contacto">
         <div class="container">
             <div class="section-title">
@@ -878,7 +616,7 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <h2 class="animate">Hablemos de tu proyecto</h2>
-                    <p class="animate">Estamos listos para ayudarte a llevar tu negocio al siguiente nivel. Completa nuestro formulario o contáctanos directamente.</p>
+                    <p class="animate">Completá el formulario y nos pondremos en contacto en menos de 24 horas.</p>
                     
                     <div class="contact-methods">
                         <div class="contact-method animate">
@@ -900,23 +638,17 @@
                                 <p>hola@clicknova.com</p>
                             </div>
                         </div>
-                        
-                        <div class="contact-method animate">
-                            <div class="contact-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div>
-                                <h4>WhatsApp</h4>
-                                <p>+54 11 8765-4321</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="google-form-wrapper animate">
-                    <div class="google-form-container">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf0_S8sC1UBya826kdL4wtDFPK7HqefuyTXlcTjZ9lrnmCa3w/viewform?embedded=true&hl=es" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-                    </div>
+                <!-- FORMULARIO DE GOOGLE FORMS - IMPLEMENTACIÓN DEFINITIVA -->
+                <div class="google-form-container animate">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf0_S8sC1UBya826kdL4wtDFPK7HqefuyTXlcTjZ9lrnmCa3w/viewform?embedded=true&hl=es" 
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Cargando formulario...
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -974,7 +706,6 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
         // Header scroll effect
         window.addEventListener('scroll', function() {
@@ -1038,6 +769,12 @@
         
         // Check on scroll
         window.addEventListener('scroll', checkScroll);
+
+        // SOLUCIÓN DEFINITIVA PARA CACHÉ EN VERCEL
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.querySelector('.google-form-container iframe');
+            iframe.src = iframe.src.split('?')[0] + '?embedded=true&hl=es&cache=' + new Date().getTime();
+        });
     </script>
 </body>
 </html>
